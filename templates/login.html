@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./static/css/login.css">
+</head>
+<body style="background-image: url('./static/images/image1.png'); background-size: cover;">
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <div id="flashMessage" class="flash" style="display: none;"></div>
+
+        <form id="loginForm">
+            <input type="text" id="userid" placeholder="User ID" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <button id="registerButton">Register</button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    
+    <script type="module">
+        import { validateUser } from "./firebase-config.js";
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const userid = document.getElementById("userid").value;
+            const password = document.getElementById("password").value;
+
+            validateUser(userid, password); // Call Firebase function
+        });
+
+        document.getElementById("registerButton").addEventListener("click", function() {
+            window.location.href = "register.html"; // Redirect to registration page
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form id="dataForm">
+        <input type="text" id="userid" placeholder="Enter Your User ID" required>
+        <input type="password" id="password" placeholder="Enter Your Password" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script type="module">
+        import { storeUserData } from "./firebase-config.js";
+
+        document.getElementById("dataForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const userid = document.getElementById("userid").value;
+            const password = document.getElementById("password").value;
+
+            storeUserData( userid , password);
+        });
+    </script>
+</body>
+</html>
+

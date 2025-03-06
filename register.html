@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="./static/css/register.css">
+</head>
+<body style="background-image: url('./static/images/image10.png'); background-size: cover;">
+    <div class="login-container">
+        <h2>Register</h2>
+
+        <form id="registerForm">
+            <input type="text" id="newuserid" placeholder="Create UserID" required>
+            <input type="password" id="newpassword" placeholder="Create Password" required>
+            <button type="submit">Register</button>
+        </form>
+
+        <button id="loginButton">&nbsp;&nbsp;Login&nbsp;</button>
+    </div>
+
+<script type="module">
+    
+        import { storeUserData } from "./firebase-config.js";
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById("registerForm");
+
+            const userid = document.getElementById("newuserid").value;
+            const password = document.getElementById("newpassword").value;
+            
+            try {
+                 storeUserData( userid , password);
+                 alert("User Registered!, go and Login...");
+                 form.reset();
+            } catch (error) {
+                 console.error("Error registering user:", error);
+                 alert("Registration failed! Please try again.");
+           }
+           
+           
+            
+        });
+
+    document.getElementById("loginButton").addEventListener("click", function() {
+        window.location.href = "login.html"; // Redirect to login page
+    });
+</script>
+
+  
+
+</body>
+</html>
+
